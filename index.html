@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Fourteen Giants – Himalaya &amp; Karakoram 8000ers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Literata:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#eef3f8; --bg2:#dbe6f2; --ink:#14212e; --muted:#4f5f70; --line:#bccbdb;
+  --peak:#7f98b4; --snow:#ffffff; --sel:#c8372d; --panel:#ffffff; --accent:#1f5a8c;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1420; --bg2:#15253a; --ink:#e9f0f7; --muted:#9fb2c6; --line:#2a3d55;
+    --peak:#3d5a7d; --snow:#eef4fa; --sel:#ef5b4d; --panel:#112033; --accent:#8fc1ee; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1420; --bg2:#15253a; --ink:#e9f0f7; --muted:#9fb2c6; --line:#2a3d55;
+  --peak:#3d5a7d; --snow:#eef4fa; --sel:#ef5b4d; --panel:#112033; --accent:#8fc1ee; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Literata,Georgia,serif;line-height:1.6}
+h1,h2,.num,.chip,button{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+
+header{background:linear-gradient(var(--bg2),var(--bg));padding:clamp(2.5rem,8vw,5rem) 0 1rem}
+h1{font-size:clamp(3rem,11vw,8rem);line-height:.88;margin:0 0 1.25rem;font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
+header p{max-width:38rem;font-size:1.15rem;color:var(--muted);margin:0}
+
+.tools{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:1.75rem 0 .75rem}
+.chip{font-size:1.15rem;font-weight:600;letter-spacing:.02em;padding:.3rem 1rem;border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.hint{color:var(--muted);font-size:.95rem;margin-left:auto}
+
+.scroller{overflow-x:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(var(--bg),var(--bg2))}
+#sky{display:block;width:100%;min-width:860px;height:auto}
+.pk{cursor:pointer;transition:opacity .25s}
+.pk .body{fill:var(--peak);transition:fill .2s}
+.pk .cap{fill:var(--snow)}
+.pk:hover .body{fill:var(--accent)}
+.pk[aria-pressed="true"] .body{fill:var(--sel)}
+.pk.dim{opacity:.22}
+.pk:focus-visible{outline:none}
+.pk:focus-visible .body{stroke:var(--ink);stroke-width:3}
+.rk{font:800 22px "Big Shoulders Display","Arial Narrow",sans-serif;fill:var(--ink);text-anchor:middle}
+.nm{font:12.5px Literata,Georgia,serif;fill:var(--muted);text-anchor:middle}
+.zone{stroke:var(--sel);stroke-width:1.5;stroke-dasharray:6 6}
+.zl{font:600 15px "Big Shoulders Display","Arial Narrow",sans-serif;fill:var(--sel)}
+.pk{transform-box:fill-box;transform-origin:50% 100%;animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*55ms)}
+@keyframes rise{from{transform:scaleY(.02);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pk{animation:none}}
+
+.panel{background:var(--panel);border:1px solid var(--line);margin:2rem 0;padding:clamp(1.25rem,4vw,2.5rem);display:grid;grid-template-columns:1fr 1.1fr;gap:2.5rem}
+.panel .rank{color:var(--sel);font-weight:600;margin:0;font-family:"Big Shoulders Display",sans-serif;font-size:1.2rem}
+.panel h2{font-size:clamp(2.4rem,6vw,4rem);line-height:.95;margin:.2rem 0 1rem;text-transform:uppercase;font-weight:800}
+.num{font-size:clamp(3rem,9vw,5.5rem);font-weight:800;line-height:1;margin:0}
+.num small{font-size:.4em;font-weight:600;color:var(--muted)}
+.ft{color:var(--muted);margin:.25rem 0 1.5rem}
+.air{margin:0}
+.air span{display:block;font-size:.95rem;color:var(--muted);margin-bottom:.35rem}
+.bar{height:14px;background:var(--bg2);border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .5s}
+dl{margin:0;border-top:2px solid var(--ink)}
+dl div{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--line)}
+dt{color:var(--muted)} dd{margin:0;font-weight:600}
+.story{margin:1.25rem 0 0}
+.nav{display:flex;gap:.5rem;margin-top:1.25rem}
+.nav button{font-size:1.1rem;font-weight:600;padding:.4rem 1.1rem;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.nav button:hover{background:var(--ink);color:var(--bg)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2rem;margin:0 0 3rem}
+.facts h3{font-family:"Big Shoulders Display",sans-serif;font-size:1.5rem;margin:0 0 .3rem;border-top:3px solid var(--sel);padding-top:.5rem;text-transform:uppercase}
+.facts p{margin:0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 3rem;color:var(--muted);font-size:.9rem}
+@media (max-width:760px){.panel{grid-template-columns:1fr;gap:1.5rem}.hint{margin-left:0;width:100%}dl div{grid-template-columns:7rem 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>The fourteen<br>giants</h1>
+    <p>Only fourteen mountains on Earth rise above 8,000 metres. Ten stand in the Himalaya and four in the neighbouring Karakoram. Tap a summit to meet it.</p>
+    <div class="tools" role="group" aria-label="Filter by mountain range">
+      <button class="chip" data-f="all" aria-pressed="true">All 14</button>
+      <button class="chip" data-f="Himalaya" aria-pressed="false">Himalaya (10)</button>
+      <button class="chip" data-f="Karakoram" aria-pressed="false">Karakoram (4)</button>
+      <span class="hint">Heights are drawn to scale, but the chart starts at 7,700 m.</span>
+    </div>
+  </div>
+</header>
+
+<div class="scroller" tabindex="0" aria-label="Skyline of the fourteen eight-thousand-metre peaks, scrollable">
+  <svg id="sky" viewBox="0 0 1400 470" role="group" aria-label="Skyline of the fourteen peaks"></svg>
+</div>
+
+<main class="wrap">
+  <article class="panel" aria-live="polite">
+    <div>
+      <p class="rank" id="rank"></p>
+      <h2 id="name"></h2>
+      <p class="num" id="m"></p>
+      <p class="ft" id="ft"></p>
+      <p class="air"><span id="airt"></span><span class="bar" style="display:block"><i id="airb"></i></span></p>
+    </div>
+    <div>
+      <dl>
+        <div><dt>Range</dt><dd id="range"></dd></div>
+        <div><dt>Country</dt><dd id="country"></dd></div>
+        <div><dt>First climbed</dt><dd id="first"></dd></div>
+      </dl>
+      <p class="story" id="story"></p>
+      <div class="nav">
+        <button id="prev" aria-label="Previous peak">Lower</button>
+        <button id="next" aria-label="Next peak">Higher</button>
+      </div>
+    </div>
+  </article>
+
+  <section class="facts">
+    <div><h3>The death zone</h3><p>Above about 8,000 m the air holds roughly a third of the pressure found at sea level. The body cannot adapt, so climbers move fast and carry oxygen. Every peak here crosses the dashed line.</p></div>
+    <div><h3>First on top</h3><p>Annapurna I was the first of the fourteen to be climbed, in 1950. Shishapangma was the last, in 1964.</p></div>
+    <div><h3>Winter is different</h3><p>K2 was the last eight-thousander climbed in winter. A team of Nepali climbers reached its summit in January 2021.</p></div>
+  </section>
+</main>
+<footer><div class="wrap">Heights are widely published figures; Everest uses the 2020 Nepal–China survey value. Air pressure is an approximation based on altitude.</div></footer>
+
+<script>
+const P=[
+{n:"Mount Everest",s:"Everest",m:8848.86,r:"Himalaya",c:"Nepal / China (Tibet)",y:1953,w:"Edmund Hillary and Tenzing Norgay",t:"The highest point on Earth. Sherpa climbers fix the ropes each spring, and the mountain is known as Sagarmatha in Nepal and Chomolungma in Tibet."},
+{n:"K2",s:"K2",m:8611,r:"Karakoram",c:"Pakistan / China",y:1954,w:"Achille Compagnoni and Lino Lacedelli",t:"Second highest, and steeper and harder than Everest. Climbers call it the Savage Mountain, and its summit pyramid is one of the most recognisable shapes in mountaineering."},
+{n:"Kangchenjunga",s:"Kangchenjunga",m:8586,r:"Himalaya",c:"Nepal / India",y:1955,w:"Joe Brown and George Band",t:"Its name means the five treasures of the snow, after its five summits. The first climbers stopped just short of the top out of respect for local beliefs."},
+{n:"Lhotse",s:"Lhotse",m:8516,r:"Himalaya",c:"Nepal / China (Tibet)",y:1956,w:"Ernst Reiss and Fritz Luchsinger",t:"Tibetan for south peak. It shares the South Col with Everest, and its steep Lhotse Face is part of the standard Everest route."},
+{n:"Makalu",s:"Makalu",m:8485,r:"Himalaya",c:"Nepal / China (Tibet)",y:1955,w:"Lionel Terray and Jean Couzy",t:"A sharp four-sided pyramid standing alone east of Everest. Its narrow ridges and steep rock make it one of the hardest eight-thousanders."},
+{n:"Cho Oyu",s:"Cho Oyu",m:8188,r:"Himalaya",c:"Nepal / China (Tibet)",y:1954,w:"Herbert Tichy, Sepp Jöchler and Pasang Dawa Lama",t:"The name is often translated as turquoise goddess. Its broad slopes make it a popular first eight-thousander."},
+{n:"Dhaulagiri I",s:"Dhaulagiri",m:8167,r:"Himalaya",c:"Nepal",y:1960,w:"A Swiss, Austrian and Nepali team",t:"The name means dazzling white. From 1808 until the 1830s, Europeans believed it was the highest mountain in the world."},
+{n:"Manaslu",s:"Manaslu",m:8163,r:"Himalaya",c:"Nepal",y:1956,w:"Toshio Imanishi and Gyalzen Norbu",t:"Mountain of the spirit. It rises above the Budhi Gandaki valley, and its first ascent was a Japanese expedition."},
+{n:"Nanga Parbat",s:"Nanga Parbat",m:8126,r:"Himalaya",c:"Pakistan",y:1953,w:"Hermann Buhl",t:"The Killer Mountain. Buhl reached the summit alone and without bottled oxygen, then survived a night in the open on the descent."},
+{n:"Annapurna I",s:"Annapurna",m:8091,r:"Himalaya",c:"Nepal",y:1950,w:"Maurice Herzog and Louis Lachenal",t:"The first eight-thousander ever climbed. Avalanches make it one of the deadliest of the fourteen."},
+{n:"Gasherbrum I",s:"Gasherbrum I",m:8080,r:"Karakoram",c:"Pakistan / China",y:1958,w:"Pete Schoening and Andy Kauffman",t:"Also called Hidden Peak, because it sits far back behind other mountains at the head of the Baltoro Glacier."},
+{n:"Broad Peak",s:"Broad Peak",m:8051,r:"Karakoram",c:"Pakistan / China",y:1957,w:"Marcus Schmuck, Fritz Wintersteller, Kurt Diemberger and Hermann Buhl",t:"Named for its long, flat summit ridge, which stretches for about 1.5 km. It stands close to K2."},
+{n:"Gasherbrum II",s:"Gasherbrum II",m:8035,r:"Karakoram",c:"Pakistan / China",y:1956,w:"Fritz Moravec, Josef Larch and Hans Willenpart",t:"An Austrian expedition made the first ascent. It is the most climbed of the Gasherbrum group."},
+{n:"Shishapangma",s:"Shishapangma",m:8027,r:"Himalaya",c:"China (Tibet)",y:1964,w:"A Chinese expedition led by Xu Jing",t:"The lowest of the fourteen and the only one entirely inside Tibet. It was the last to be climbed."}
+];
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("sky"),G=390,A0=7700,A1=8900;
+const $=id=>document.getElementById(id), fmt=(n,d=0)=>n.toLocaleString("en-US",{maximumFractionDigits:d});
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+const Y=m=>G-(m-A0)/(A1-A0)*(G-70);
+// death zone line
+el("line",{x1:0,x2:1400,y1:Y(8000),y2:Y(8000),class:"zone"});
+el("text",{x:1390,y:Y(8000)+20,class:"zl","text-anchor":"end"}).textContent="8,000 m: the death zone begins";
+let cur=0;const pk=[];
+P.forEach((p,i)=>{
+  const cx=75+i*94,top=Y(p.m),h=G-top,pt=(x,d)=>`${cx+x},${top+d*h}`;
+  const g=el("g",{class:"pk",tabindex:0,role:"button","aria-pressed":"false","aria-label":`${i+1}. ${p.n}, ${fmt(p.m,2)} metres`});
+  g.style.setProperty("--i",i);
+  el("polygon",{class:"body",points:[pt(-125,1),pt(-70,.6),pt(-28,.32),pt(0,0),pt(24,.34),pt(75,.66),pt(125,1)].join(" ")},g);
+  el("polygon",{class:"cap",points:[pt(0,0),pt(-24,.28),pt(-12,.23),pt(-2,.31),pt(8,.22),pt(19,.28)].join(" ")},g);
+  el("text",{x:cx,y:top-9,class:"rk"},g).textContent=i+1;
+  el("text",{x:cx,y:G+22+(i%2)*16,class:"nm"},g).textContent=p.s;
+  g.addEventListener("click",()=>show(i));
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();show(i)}});
+  pk.push(g);
+});
+function show(i){
+  cur=i;const p=P[i];
+  pk.forEach((g,k)=>g.setAttribute("aria-pressed",k===i));
+  $("rank").textContent=`No. ${i+1} of 14`;
+  $("name").textContent=p.n;
+  $("m").innerHTML=`${fmt(p.m,2)} <small>metres</small>`;
+  $("ft").textContent=`${fmt(Math.round(p.m*3.28084))} feet`;
+  const air=Math.round(Math.exp(-p.m/7600)*100);
+  $("airt").textContent=`Air pressure at the summit: about ${air}% of sea level`;
+  $("airb").style.width=air+"%";
+  $("range").textContent=p.r;$("country").textContent=p.c;
+  $("first").textContent=`${p.y}, ${p.w}`;
+  $("story").textContent=p.t;
+  $("prev").disabled=i===P.length-1;$("next").disabled=i===0;
+}
+// "Lower" = next rank down, "Higher" = next rank up
+$("prev").onclick=()=>cur<P.length-1&&show(cur+1);
+$("next").onclick=()=>cur>0&&show(cur-1);
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const f=b.dataset.f;pk.forEach((g,k)=>g.classList.toggle("dim",f!=="all"&&P[k].r!==f));
+}));
+show(0);
+</script>
+</body>
+</html>
